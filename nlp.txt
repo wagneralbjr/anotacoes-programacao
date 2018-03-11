@@ -1,0 +1,30 @@
+
+bag of words = count the number of times as word pulled out of the bag
+	-> bad , since discards information, better way is to split in n-grams
+
+
+
+
+CountVectorizer()
+
+	#tokenizes all the strings
+	#builds a 'vocabularity'
+	#counts the occurrences of each token in the vocabulary.
+
+	example:
+
+	from sklearn.feature_extraction.text import CountVectorizer
+	TOKENS_BASIC = '\\S+(?=\\s+)'
+
+	#trade off na values with empty strings.
+	df.Program_Description.fillna('',inplace=True)
+
+	vec_basic = CountVectorizer(token_pattern=TOKENS_BASIC)
+
+	#then u can use if fit and transform like others pre-transform
+
+	vec_basic.fit(df.Program_Description)
+
+	vec_basic.get_feature_names()
+
+

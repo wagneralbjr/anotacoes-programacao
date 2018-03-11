@@ -1,0 +1,31 @@
+Quando algumas classes não existem na amostragem, uma separação aleatória(train-test-split), 
+não é a solução mais indicada, pois o treinamento não conseguirá prever algo que nunca viu em seu treinamento.
+Solução? StratifiedShuffleSPlit, porém só funciona com uma única variável dependente, solução ? criar uma função auxiliar, multilabel_train_test_split()?
+
+https://github.com/drivendataorg/box-plots-sklearn/blob/master/src/data/multilabel.py
+
+A função OneVsRestCLassifier, permite a gente tratar cada variável dependente independentemente das outras variáveis dependentes. Ou seja, todas as variáveis target, Rodamos uma regressão logística para cada uma das variáveis dependentes.
+
+
+	#exemplo:
+
+		data_to_train = df[NUMERIC_COLUMNS].fillna(-1000)
+		labels_to_use = pd.get_dummies(df[labels])
+
+
+		#função pega no datacamp.
+		X_train,X_test,y_train,y_test = multilabel_train_test_split(data_to_train,labels_to_use,size=0.2,seed=123)
+
+		from sklearn.linear_model import LogisticRegression
+		from sklearn.multiclass import OneVsRestClassifier
+
+		clf = OneVsRestClassifier(LogisticRegression())
+
+		clf.fit(X_train,y_train)
+		accuracy = clf.score(X_test,y_test)
+
+
+
+predict x predict_proba()
+
+	Predict(), preve mesmo a classe, predict_proba() , prevê a chance.

@@ -1,0 +1,27 @@
+
+# mostra a quantidade de tipos dos data-frames.s
+	df.dtypes.value_counts()
+
+
+# Converter variáveis do dataframe para categórica
+# montar lista com nomes.
+
+	#criar função .
+	categorize_label = lambda x: x.astype('category')
+
+	#usar apply.
+	df[LABELS] = df[LABELS].apply(categorize_label,axis=0)
+
+# montar gráfico para mostrar os valores categóricos
+	
+	#cria uma série com os valores únicos.
+	num_unique_labels = df[LABELS].apply(pd.Series.nunique) 
+	#ela já sai nomeada, então só plotar dps.
+
+	num_unique_labels.plot(kind='bar')
+
+	plt.xlabel('Labels')
+	plt.ylabel('Number of unique values')
+
+
+
