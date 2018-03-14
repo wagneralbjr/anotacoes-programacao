@@ -1,0 +1,50 @@
+What is Pipeline ? 
+	We build a pipeline to organize all the steps that we want to do in the building of a model.
+	like pre-processing, transformation. etc.
+
+Pipeline with text and Numbers:
+	Pipelines with steps for text processing and number processing, can't go together. But there's a sollution to this. There're two tools FunctionTransformer and featureUnion.
+
+FunctionTranform. has a simple job, he takes a python function, and transform to a object that sklearn pipeline can understand.
+
+examples: 
+
+	from sklearn.preprocessing import FunctionTransformer
+	from sklearn.pipeline import FeatureUnion
+
+	get_text_data = FunctionTransformer(lambda x: x['test'], validate=False)
+
+	get_numeric_data = FunctionTransformer(lambda x: x[['numeric','with_missing']], validate=False)
+
+FeatureUnion, can join two pipelines together, after we processed everything in the pipeline. Like separated dataframes to text and number processing.
+
+	from sklearn.pipeline import FeatureUnion
+
+	union = FeatureUnion([
+			('numeric',numeric_pipeline),
+			('text',text_pipeline)
+	])
+
+
+joining the two together
+
+	numeric_pipeline = Pipeline ([
+		('selector',get_numeric_data),
+		('imputer',Imputer())
+	])
+
+	text_pipeline = Pipeline([
+		('selecctor',get_text_data),
+		('vectorizer', CountVectorizer())
+	])
+
+	pl = Pipeline([
+		('union', FeatureUnion([
+			('numeric',numeric_pipeline),
+			('text',text_pipeline)
+
+		])),
+		('clf',OneVsRestClassifier(LogisticRegression()))
+	])
+
+

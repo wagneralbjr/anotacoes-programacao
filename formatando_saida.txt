@@ -1,6 +1,5 @@
 
 
-
 Para formatar a saída do dataframe com respostas:
 	#usando o prefix_sep como '__', pq já tem '_', nos nomes.	
 
