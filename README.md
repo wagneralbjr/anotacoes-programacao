@@ -2,7 +2,7 @@
 simplesmente algumas anotações
 
 
-#Check NA in DataFrame
+# Check NA in DataFrame
 ```
 def missing_data(data):
     total = data.isnull().sum()
