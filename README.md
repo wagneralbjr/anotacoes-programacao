@@ -3,7 +3,7 @@ simplesmente algumas anotações
 
 
 #Check NA in DataFrame
-
+```
 def missing_data(data):
     total = data.isnull().sum()
     percent = (data.isnull().sum()/data.isnull().count()*100)
@@ -14,3 +14,4 @@ def missing_data(data):
         types.append(dtype)
     tt['Types'] = types
     return(np.transpose(tt))
+´´´ 
